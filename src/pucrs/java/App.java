@@ -43,6 +43,7 @@ public class App {
 		}
 	}
 
+	//a)
 	public static int nOcorrencias(int[] vetor, Integer el) {
 		int count = 0;
 
@@ -55,6 +56,7 @@ public class App {
 		return count;
 	}
 
+	//b)
 	public static boolean hasRepeat(int[] vetor) {
 		int valor, valorRepetido;
 		boolean resposta = false;
@@ -73,6 +75,7 @@ public class App {
 		return resposta;
 	}
 
+	//c)
 	public static int nroRepeat(int[] vetor) {
 		int valor, valorRepetido;
 		int count = 0;
@@ -97,6 +100,7 @@ public class App {
 		return count;
 	}
 	
+	//d)
 	public static int[] listRepeat(int[] vetor) {
 		int valor,valorRepetido;
 		List<Integer> lista = new ArrayList<Integer>();
@@ -121,6 +125,25 @@ public class App {
 		return vetorRepetido;
 	}
 	
+	//e) Método que retorna a união dos vetores
+	public static int[] union(int[] vetor1, int[] vetor2) {
+		int[] vetorUnion = new int[20];
+		
+		return vetorUnion;
+	}
 	
+	//f) Metodo que retorna a intersecção dos vetores
+	public static int[] interserct(int[] vetor1, int[] vetor2) {
+		int[] vetorInterserct = new int[20];
+		
+		return vetorInterserct;
+	}
+	
+	//g) Método que retorna a diferença entre os vetores
+	public static int[] difference(int[] vetor1, int[] vetor2) {
+		int[] vetorDifference = new int[20];
+		
+		return vetorDifference;
+	}
 
 }
