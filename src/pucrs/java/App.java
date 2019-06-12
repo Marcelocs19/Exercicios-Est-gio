@@ -1,7 +1,6 @@
 package pucrs.java;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class App {
@@ -13,8 +12,8 @@ public class App {
 		int vetorInvertido[] = new int[4];
 		int vetorOcorrencia[] = { 1, 2, 3, 4, 1 };
 		int vetorRepetido[] = { 1, 2, 3, 4, 2 };
-		int vetorUnion[] = { 1, 2, 3 };
-		int vetorUnion2[] = { 4, 5 };
+		int vetorUnion[] = { 1, 2, 3, 4 };
+		int vetorUnion2[] = { 1, 4, 5, 6 };
 		int aux = vetorNormal.length - 1;
 
 		System.out.print("Arranjo de 20 posições: ");
@@ -87,7 +86,7 @@ public class App {
 	// c) Método que retorna o número de elementos repetidos
 	public static int nroRepeat(int[] vetor) {
 		int count = 0;	
-		ArrayList<Integer> lista = new ArrayList<>();
+		List<Integer> lista = new ArrayList<>();
 		
 		for(int i = 0; i < vetor.length; i++) {
 			lista.add(vetor[i]);
@@ -109,8 +108,8 @@ public class App {
 
 	// d) Método que retorna um vetor dos elementos repetidos
 	public static int[] listRepeat(int[] vetor) {
-		List<Integer> listaVetor = new ArrayList<Integer>();
-		List<Integer> listaRepetidos = new ArrayList<Integer>();
+		List<Integer> listaVetor = new ArrayList<>();
+		List<Integer> listaRepetidos = new ArrayList<>();
 		int[] vetorRepetido;
 
 		for(int i = 0; i < vetor.length; i++) {
@@ -136,18 +135,32 @@ public class App {
 	}
 
 	// e) Método que retorna a união dos vetores
-	// Trabalhando
 	public static int[] union(int[] vetor1, int[] vetor2) {
-		int[] vetorUnion = new int[vetor1.length + vetor2.length];
-		int i = 0;
-		for (; i < vetor1.length; i++) {
-			vetorUnion[i] = vetor1[i];
+		int[] vetorUnion;
+		List<Integer> lista = new ArrayList<>();
+		
+		for(int i = 0; i < vetor1.length; i++) {
+			lista.add(vetor1[i]);
+		}
+		for(int i = 0; i < vetor2.length; i++) {
+			lista.add(vetor2[i]);
 		}
 
-		for (int j = 0; j < vetor2.length; j++) {
-			vetorUnion[i++] = vetor2[j];
+		for (int i = 0; i < lista.size(); i++) {
+			for (int j = i+1; j < lista.size(); j++) {
+				if(lista.get(i) == lista.get(j)) {
+					lista.remove(j);
+				}
+				if(j > lista.size()) {
+					break;
+				}
+			}
 		}
-
+		vetorUnion = new int[lista.size()];
+		for(int i = 0; i < lista.size(); i++) {
+			vetorUnion[i] = lista.get(i);
+		}
+				
 		return vetorUnion;
 	}
 
