@@ -14,6 +14,8 @@ public class App {
 		int vetorRepetido[] = { 1, 2, 3, 4, 2 };
 		int vetorUnion[] = { 1, 2, 3, 4 };
 		int vetorUnion2[] = { 1, 4, 5, 6 };
+		int interserct1[] = { 1, 2, 3, 4, 8, 9};
+		int interserct2[] = { 1, 2, 5, 6, 8};
 		int aux = vetorNormal.length - 1;
 
 		System.out.print("Arranjo de 20 posições: ");
@@ -48,6 +50,12 @@ public class App {
 		int[] vetorAux2 = union(vetorUnion, vetorUnion2);
 		for (int i = 0; i < vetorAux2.length; i++) {
 			System.out.print(vetorAux2[i] + " ");
+		}
+		
+		System.out.println("Intersecção de dois vetores: ");
+		int[] vetorAux3 = interserct(interserct1,interserct2);
+		for (int i = 0; i < vetorAux3.length; i++) {
+			System.out.print(vetorAux3[i] + " ");
 		}
 	}
 
@@ -165,9 +173,22 @@ public class App {
 	}
 
 	// f) Metodo que retorna a intersecção dos vetores
+	// o que existe no vetor1 e também no vetor2
 	public static int[] interserct(int[] vetor1, int[] vetor2) {
-		int[] vetorInterserct = new int[20];
-
+		int[] vetorInterserct;
+		List<Integer> lista = new ArrayList<>();
+		
+		for(int i = 0; i < vetor1.length; i++) {
+			for(int j = 0; j < vetor2.length; j++) {
+				if(vetor1[i] == vetor2[j]) {
+					lista.add(vetor1[i]);
+				}
+			}
+		}
+		vetorInterserct  = new int[lista.size()];
+		for(int i = 0; i < lista.size(); i++) {
+			vetorInterserct[i] = lista.get(i);
+		}
 		return vetorInterserct;
 	}
 
