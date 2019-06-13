@@ -16,6 +16,8 @@ public class App {
 		int vetorUnion2[] = { 1, 4, 5, 6 };
 		int interserct1[] = { 1, 2, 3, 4, 8, 9};
 		int interserct2[] = { 1, 2, 5, 6, 8};
+		int difference1[] = { 1, 2, 3, 4, 8, 9};
+		int difference2[] = { 1, 2, 5, 6, 8};
 		int aux = vetorNormal.length - 1;
 
 		System.out.print("Arranjo de 20 posições: ");
@@ -52,10 +54,16 @@ public class App {
 			System.out.print(vetorAux2[i] + " ");
 		}
 		
-		System.out.println("Intersecção de dois vetores: ");
+		System.out.println("\nIntersecção de dois vetores: ");
 		int[] vetorAux3 = interserct(interserct1,interserct2);
 		for (int i = 0; i < vetorAux3.length; i++) {
 			System.out.print(vetorAux3[i] + " ");
+		}
+		
+		System.out.println("\nDiferença entre dois vetores: ");
+		int[] vetorAux4 = difference(difference1,difference2);
+		for (int i = 0; i < vetorAux4.length; i++) {
+			System.out.print(vetorAux4[i] + " ");
 		}
 	}
 
@@ -148,11 +156,14 @@ public class App {
 		List<Integer> lista = new ArrayList<>();
 		
 		for(int i = 0; i < vetor1.length; i++) {
-			lista.add(vetor1[i]);
+			if(i < vetor1.length) {
+				lista.add(vetor1[i]);
+			}
+			if(i < vetor2.length) {
+				lista.add(vetor2[i]);
+			}
 		}
-		for(int i = 0; i < vetor2.length; i++) {
-			lista.add(vetor2[i]);
-		}
+		
 
 		for (int i = 0; i < lista.size(); i++) {
 			for (int j = i+1; j < lista.size(); j++) {
@@ -163,7 +174,7 @@ public class App {
 					break;
 				}
 			}
-		}
+		}		
 		vetorUnion = new int[lista.size()];
 		for(int i = 0; i < lista.size(); i++) {
 			vetorUnion[i] = lista.get(i);
@@ -193,10 +204,39 @@ public class App {
 	}
 
 	// g) Método que retorna a diferença entre os vetores
+	//Trabalhando
 	public static int[] difference(int[] vetor1, int[] vetor2) {
 		int[] vetorDifference = new int[20];
-
+		List<Integer> lista = new ArrayList<>();
+		
+		for(int i = 0; i < vetor1.length; i++) {
+			if(i < vetor1.length) {
+				lista.add(vetor1[i]);
+			}
+			if(i < vetor2.length) {
+				lista.add(vetor2[i]);
+			}
+		}
+		
+		for(int i = 0; i < lista.size(); i++) {
+			for(int j = 0; j < lista.size(); j++) {
+				if(lista.get(i) == lista.get(j)) {
+					lista.remove(j);
+				}
+//				if(j > lista.size()) {
+//					break;
+//				}
+			}
+		}
+		
+		vetorDifference  = new int[lista.size()];
+		for(int i = 0; i < lista.size(); i++) {
+			vetorDifference[i] = lista.get(i);
+		}
 		return vetorDifference;
 	}
+
+	
+	
 
 }
