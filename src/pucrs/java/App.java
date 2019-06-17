@@ -1,6 +1,7 @@
 package pucrs.java;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class App {
@@ -14,10 +15,10 @@ public class App {
 		int vetorRepetido[] = { 1, 2, 3, 4, 2 };
 		int vetorUnion[] = { 1, 2, 3, 4 };
 		int vetorUnion2[] = { 1, 4, 5, 6 };
-		int interserct1[] = { 1, 2, 3, 4, 8, 9};
-		int interserct2[] = { 1, 2, 5, 6, 8};
-		int difference1[] = { 1, 2, 3, 4, 8, 9};
-		int difference2[] = { 1, 2, 5, 6, 8};
+		int interserct1[] = { 1, 2, 3, 4, 8, 9 };
+		int interserct2[] = { 1, 2, 5, 6, 8 };
+		int difference1[] = { 1, 2, 3, 4, 8, 9 };
+		int difference2[] = { 1, 2, 5, 6, 8 };
 		int aux = vetorNormal.length - 1;
 
 		System.out.print("Arranjo de 20 posições: ");
@@ -53,15 +54,15 @@ public class App {
 		for (int i = 0; i < vetorAux2.length; i++) {
 			System.out.print(vetorAux2[i] + " ");
 		}
-		
+
 		System.out.println("\nIntersecção de dois vetores: ");
-		int[] vetorAux3 = interserct(interserct1,interserct2);
+		int[] vetorAux3 = interserct(interserct1, interserct2);
 		for (int i = 0; i < vetorAux3.length; i++) {
 			System.out.print(vetorAux3[i] + " ");
 		}
-		
+
 		System.out.println("\nDiferença entre dois vetores: ");
-		int[] vetorAux4 = difference(difference1,difference2);
+		int[] vetorAux4 = difference(difference1, difference2);
 		for (int i = 0; i < vetorAux4.length; i++) {
 			System.out.print(vetorAux4[i] + " ");
 		}
@@ -101,20 +102,20 @@ public class App {
 
 	// c) Método que retorna o número de elementos repetidos
 	public static int nroRepeat(int[] vetor) {
-		int count = 0;	
+		int count = 0;
 		List<Integer> lista = new ArrayList<>();
-		
-		for(int i = 0; i < vetor.length; i++) {
+
+		for (int i = 0; i < vetor.length; i++) {
 			lista.add(vetor[i]);
 		}
-		
+
 		for (int i = 0; i < lista.size(); i++) {
-			for (int j = i+1; j < lista.size(); j++) {
-				if(lista.get(i) == lista.get(j)) {
+			for (int j = i + 1; j < lista.size(); j++) {
+				if (lista.get(i) == lista.get(j)) {
 					lista.remove(j);
 					count++;
 				}
-				if(j > lista.size()) {
+				if (j > lista.size()) {
 					break;
 				}
 			}
@@ -128,23 +129,23 @@ public class App {
 		List<Integer> listaRepetidos = new ArrayList<>();
 		int[] vetorRepetido;
 
-		for(int i = 0; i < vetor.length; i++) {
+		for (int i = 0; i < vetor.length; i++) {
 			listaVetor.add(vetor[i]);
 		}
-		
+
 		for (int i = 0; i < listaVetor.size(); i++) {
-			for (int j = i+1; j < listaVetor.size(); j++) {
-				if(listaVetor.get(i) == listaVetor.get(j)) {
+			for (int j = i + 1; j < listaVetor.size(); j++) {
+				if (listaVetor.get(i) == listaVetor.get(j)) {
 					listaRepetidos.add(listaVetor.get(j));
 					listaVetor.remove(j);
 				}
-				if(j > listaVetor.size()) {
+				if (j > listaVetor.size()) {
 					break;
 				}
 			}
 		}
 		vetorRepetido = new int[listaRepetidos.size()];
-		for(int i = 0; i < listaRepetidos.size(); i++) {
+		for (int i = 0; i < listaRepetidos.size(); i++) {
 			vetorRepetido[i] = listaRepetidos.get(i);
 		}
 		return vetorRepetido;
@@ -154,32 +155,28 @@ public class App {
 	public static int[] union(int[] vetor1, int[] vetor2) {
 		int[] vetorUnion;
 		List<Integer> lista = new ArrayList<>();
-		
-		for(int i = 0; i < vetor1.length; i++) {
-			if(i < vetor1.length) {
-				lista.add(vetor1[i]);
-			}
-			if(i < vetor2.length) {
-				lista.add(vetor2[i]);
-			}
+
+		if (vetor1.length >= vetor2.length) {
+			lista = addList(vetor1, vetor2);
+		} else {
+			lista = addList(vetor2, vetor1);
 		}
-		
 
 		for (int i = 0; i < lista.size(); i++) {
-			for (int j = i+1; j < lista.size(); j++) {
-				if(lista.get(i) == lista.get(j)) {
+			for (int j = i + 1; j < lista.size(); j++) {
+				if (lista.get(i) == lista.get(j)) {
 					lista.remove(j);
 				}
-				if(j > lista.size()) {
+				if (j > lista.size()) {
 					break;
 				}
 			}
-		}		
+		}
 		vetorUnion = new int[lista.size()];
-		for(int i = 0; i < lista.size(); i++) {
+		for (int i = 0; i < lista.size(); i++) {
 			vetorUnion[i] = lista.get(i);
 		}
-				
+
 		return vetorUnion;
 	}
 
@@ -188,55 +185,58 @@ public class App {
 	public static int[] interserct(int[] vetor1, int[] vetor2) {
 		int[] vetorInterserct;
 		List<Integer> lista = new ArrayList<>();
-		
-		for(int i = 0; i < vetor1.length; i++) {
-			for(int j = 0; j < vetor2.length; j++) {
-				if(vetor1[i] == vetor2[j]) {
+
+		for (int i = 0; i < vetor1.length; i++) {
+			for (int j = 0; j < vetor2.length; j++) {
+				if (vetor1[i] == vetor2[j]) {
 					lista.add(vetor1[i]);
 				}
 			}
 		}
-		vetorInterserct  = new int[lista.size()];
-		for(int i = 0; i < lista.size(); i++) {
+		vetorInterserct = new int[lista.size()];
+		for (int i = 0; i < lista.size(); i++) {
 			vetorInterserct[i] = lista.get(i);
 		}
 		return vetorInterserct;
 	}
 
 	// g) Método que retorna a diferença entre os vetores
-	//Trabalhando
 	public static int[] difference(int[] vetor1, int[] vetor2) {
-		int[] vetorDifference = new int[20];
+		int[] vetorDifference;
 		List<Integer> lista = new ArrayList<>();
-		
 		for(int i = 0; i < vetor1.length; i++) {
-			if(i < vetor1.length) {
+			if(Arrays.binarySearch(vetor2, vetor1[i]) < 0) {
 				lista.add(vetor1[i]);
 			}
-			if(i < vetor2.length) {
+		}
+		
+		for(int i = 0; i < vetor2.length; i++) {
+			if(Arrays.binarySearch(vetor1, vetor2[i]) < 0) {
 				lista.add(vetor2[i]);
 			}
 		}
-		
-		for(int i = 0; i < lista.size(); i++) {
-			for(int j = 0; j < lista.size(); j++) {
-				if(lista.get(i) == lista.get(j)) {
-					lista.remove(j);
-				}
-//				if(j > lista.size()) {
-//					break;
-//				}
-			}
-		}
-		
-		vetorDifference  = new int[lista.size()];
-		for(int i = 0; i < lista.size(); i++) {
+
+		vetorDifference = new int[lista.size()];
+
+		for (int i = 0; i < lista.size(); i++) {
 			vetorDifference[i] = lista.get(i);
 		}
+		Arrays.sort(vetorDifference);
 		return vetorDifference;
 	}
 
-	
-	
+
+	private static List<Integer> addList(int[] vetor1, int[] vetor2) {
+		List<Integer> lista = new ArrayList<>();
+		for (int i = 0; i < vetor1.length; i++) {
+			if (i < vetor1.length) {
+				lista.add(vetor1[i]);
+			}
+			if (i < vetor2.length) {
+				lista.add(vetor2[i]);
+			}
+		}
+		return lista;
+	}
 
 }
