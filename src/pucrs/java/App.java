@@ -17,7 +17,7 @@ public class App {
 		int vetorUnion2[] = { 1, 4, 5, 6 };
 		int interserct1[] = { 1, 2, 3, 4, 8, 9 };
 		int interserct2[] = { 1, 2, 5, 6, 8 };
-		int difference1[] = { 1, 2, 3, 4, 8, 9 };
+		int difference1[] = { 1, 2, 2, 4, 8, 9 };
 		int difference2[] = { 1, 2, 5, 6, 8 };
 		int aux = vetorNormal.length - 1;
 
@@ -62,10 +62,13 @@ public class App {
 		}
 
 		System.out.println("\nDiferença entre dois vetores: ");
+		long starTime = System.nanoTime(); //Nanossegundos
 		int[] vetorAux4 = difference(difference1, difference2);
+		long endTime = System.nanoTime(); //Nanossegundos
 		for (int i = 0; i < vetorAux4.length; i++) {
 			System.out.print(vetorAux4[i] + " ");
 		}
+		System.out.println("\nTempo execução: " + ((endTime - starTime)));
 	}
 
 	// a) Método que retorna quantas ocorrências de um elemento estão na lista
@@ -224,7 +227,8 @@ public class App {
 		Arrays.sort(vetorDifference);
 		return vetorDifference;
 	}
-
+	
+	
 
 	private static List<Integer> addList(int[] vetor1, int[] vetor2) {
 		List<Integer> lista = new ArrayList<>();
